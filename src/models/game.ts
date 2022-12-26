@@ -14,9 +14,19 @@ export class Game {
 
         shuffle(this.stack);
     }
+
+    public toJson() {
+        return {
+            players: this.players,
+            stack: this.stack,
+            playedCards: this.playedCards,
+            currentplayer: this.currentPlayer
+        }
+    }
 }
 
 function shuffle(array: string[]) {
     return array.sort(() => Math.random() - 0.5);
-
 }
+
+

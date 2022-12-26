@@ -18,7 +18,7 @@ export class GameComponent implements OnInit {
 
 
   constructor(private firestore: AngularFirestore, public dialog: MatDialog) {
-    this.game = new Game();
+    this.game = new Game()
   }
 
 
@@ -36,7 +36,9 @@ export class GameComponent implements OnInit {
   }
 
   newGame() {
-
+    this.firestore
+      .collection('games')
+      .add(this.game.toJson());
   }
 
   takeCard() {
