@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ringoffire-bcd6f": {
+      "hosting": {
+        "ringoffire": [
+          "ringoffire-bcd6f"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ringoffire-bcd6f"
+  }
+}
