@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-game-info',
@@ -26,16 +28,21 @@ export class GameInfoComponent implements OnInit, OnChanges {
   description: any;
   @Input() card: string = '';
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if (this.card == 'undefined') {
+      this.title = 'Please pick a card';
+      this.description = 'Please click on the card stack to select the next card!';
+    }
   }
 
   ngOnChanges(): void {
-    if (this.card) {
+    if (this.card && this.card != 'undefined') {
       let cardNumer = +this.card.split('_')[1];
       this.title = this.cardAction[cardNumer - 1].title;
       this.description = this.cardAction[cardNumer - 1].description;
     }
+
   }
 }

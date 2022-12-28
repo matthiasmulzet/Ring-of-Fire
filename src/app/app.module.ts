@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartScreenComponent } from './start-screen/start-screen.component';
@@ -23,6 +23,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     FormsModule,
     MatCardModule,
     BrowserAnimationsModule,
+    CommonModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

@@ -4,7 +4,8 @@ export class Game {
     public playedCards: string[] = [];
     public currentPlayer: number = 0;
     public pickCardAnimation = false;
-    public currentCard: any;
+    public currentCard: any = 'undefined'; //undefined as a String because you can't add
+    //a undefined variable to firebase database
 
     constructor() {
         for (let i = 1; i < 14; i++) {
