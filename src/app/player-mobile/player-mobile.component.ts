@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  selector: 'app-player-mobile',
+  templateUrl: './player-mobile.component.html',
+  styleUrls: ['./player-mobile.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerMobileComponent implements OnInit {
 
   @Input() name: any;
   @Input() image = '1.webp';
@@ -16,4 +16,5 @@ export class PlayerComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
 }

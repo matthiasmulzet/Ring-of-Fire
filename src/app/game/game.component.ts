@@ -5,6 +5,7 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { update } from '@angular/fire/database';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { update } from '@angular/fire/database';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: any;
+  gameOver: boolean = false;
 
 
 
@@ -37,6 +39,7 @@ export class GameComponent implements OnInit {
         .subscribe((game: any) => {
           console.log('game update', game);
           this.game.currentPlayer = game.currentPlayer;
+          this.game.player_images = game.player_images;
           this.game.playedCards = game.playedCards;
           this.game.players = game.players;
           this.game.stack = game.stack;
@@ -51,7 +54,10 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    }
+    else if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       this.game.currentPlayer++;
@@ -65,12 +71,34 @@ export class GameComponent implements OnInit {
     }
   }
 
+
+  editPlayer(playerId: number) {
+    console.log('edit Player', playerId);
+
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe((change: string) => {
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.players.splice(playerId, 1);
+          this.game.player_images.splice(playerId, 1);
+        }
+        else {
+          console.log('received change', change)
+          this.game.player_images[playerId] = change;
+        }
+        this.saveGame();
+      }
+    });
+  }
+
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent)
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.player_images.push('1.webp');
         this.saveGame();
       }
     });
