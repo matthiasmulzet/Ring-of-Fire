@@ -1,0 +1,25 @@
+.send-link-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    a {
+        background-color: #3F51B5;
+        text-decoration: none;
+        color: white;
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(1.2);
+        }
+    }
+}
+
+.mat-mdc-dialog-actions {
+    justify-content: center;
+}

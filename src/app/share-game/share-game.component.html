@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Share with Friends</h1>
+
+<div mat-dialog-content>
+
+    <div class="send-link-container">
+        <a href="mailto: ?subject=Join the Game!&body={{actualURL}}">Send link by E-Mail</a>
+        <a (click)="copyURL()">Copy Link</a>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Close</button>
+</div>

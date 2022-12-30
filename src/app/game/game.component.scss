@@ -64,6 +64,12 @@
     z-index: 1;
 }
 
+.button-share {
+    position: absolute;
+    right: 32px;
+    bottom: 100px;
+}
+
 .button-add {
     position: absolute;
     right: 32px;
@@ -113,5 +119,20 @@ app-player-mobile {
 
     img {
         width: 300px;
+    }
+}
+
+.preload-image {
+    opacity: 0;
+    z-index: -999;
+}
+
+@media (max-width: 720px) {
+    .button-add {
+        bottom: 133px !important;
+    }
+
+    .button-share {
+        bottom: 200px !important;
     }
 }

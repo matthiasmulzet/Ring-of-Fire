@@ -32,8 +32,8 @@ export class GameInfoComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.card == 'undefined') {
-      this.title = 'Please pick a card';
-      this.description = 'Please click on the card stack to select the next card!';
+      this.title = 'How to play:';
+      this.description = 'Please add two or more players. Share URL for others to join. Click on card stack to pick a card!';
     }
   }
 

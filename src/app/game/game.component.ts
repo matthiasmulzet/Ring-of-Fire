@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { update } from '@angular/fire/database';
 import { EditPlayerComponent } from '../edit-player/edit-player.component';
+import { ShareGameComponent } from '../share-game/share-game.component';
 
 
 @Component({
@@ -54,21 +55,24 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (this.game.stack.length == 0) {
-      this.gameOver = true;
-    }
-    else if (!this.game.pickCardAnimation) {
-      this.game.currentCard = this.game.stack.pop();
-      this.game.pickCardAnimation = true;
-      this.game.currentPlayer++;
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-      this.saveGame();
-      setTimeout(() => {
-        this.game.playedCards.push(this.game.currentCard);
-        this.game.pickCardAnimation = false;
+    if (this.game.players.length > 2) {
+      if (this.game.stack.length == 0) {
+        this.gameOver = true;
+      }
+      else if (!this.game.pickCardAnimation) {
+        this.game.currentCard = this.game.stack.pop();
+        this.game.pickCardAnimation = true;
+        this.game.currentPlayer++;
+        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
         this.saveGame();
-      }, 930);
+        setTimeout(() => {
+          this.game.playedCards.push(this.game.currentCard);
+          this.game.pickCardAnimation = false;
+          this.saveGame();
+        }, 930);
+      }
     }
+
   }
 
 
@@ -94,6 +98,18 @@ export class GameComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent)
+
+    dialogRef.afterClosed().subscribe((name: string) => {
+      if (name && name.length > 0) {
+        this.game.players.push(name);
+        this.game.player_images.push('1.webp');
+        this.saveGame();
+      }
+    });
+  }
+
+  openShare(): void {
+    const dialogRef = this.dialog.open(ShareGameComponent)
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {

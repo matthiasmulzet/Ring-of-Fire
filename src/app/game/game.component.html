@@ -13,7 +13,7 @@
 </div>
 
 <div *ngIf="!gameOver" class="field">
-
+    <img class="preload-image" src="assets/img/cards/{{ game.stack[game.stack.length - 1] }}.png">
     <div class="card-stack">
         <!-- Card stack -->
         <img *ngFor="let c of [0, 1,2,3]; let i = index;" [ngStyle]="{'right.px': i * 5}"
@@ -31,6 +31,10 @@
 </div>
 
 <app-game-info *ngIf="!gameOver" [card]="game.currentCard" class="pin-bottom"></app-game-info>
+
+<button mat-fab color="primary" (click)="openShare()" class="button-share">
+    <mat-icon>share</mat-icon>
+</button>
 
 <button *ngIf="!gameOver" mat-fab color="primary" (click)="openDialog()" class="button-add">
     <mat-icon>add</mat-icon>
