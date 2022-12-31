@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ShareGameComponent {
 
-  actualURL: string = this.router.url;
+  actualURL: string = window.location.href;
 
 
   constructor(public dialogRef: MatDialogRef<ShareGameComponent>, public router: Router) { }
@@ -19,9 +19,8 @@ export class ShareGameComponent {
   }
 
   copyURL() {
-    let copyText = this.router.url;
+    let copyText = 'https://ringoffire-bcd6f.firebaseapp.com' + window.location.href;
     navigator.clipboard.writeText(copyText);
-    console.log(copyText);
   }
 }
 

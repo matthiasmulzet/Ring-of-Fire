@@ -6,6 +6,10 @@
     border-bottom-left-radius: 50px;
     overflow: hidden;
 
+    @media(max-width: 780px) {
+        width: 270px;
+    }
+
     span {
         font-size: 24px;
         margin-left: 16px;
@@ -26,5 +30,5 @@
 
 
 .player-active {
-    background-color: orange !important;
+    background-color: #3F51B5 !important;
 }

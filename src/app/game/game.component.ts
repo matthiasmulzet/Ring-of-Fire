@@ -28,7 +28,6 @@ export class GameComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.newGame();
     this.route.params.subscribe((params) => {
       console.log(params['id']);
       this.gameId = params['id'];
@@ -55,7 +54,7 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (this.game.players.length > 2) {
+    if (this.game.players.length >= 2) {
       if (this.game.stack.length == 0) {
         this.gameOver = true;
       }
