@@ -1,36 +1,39 @@
-.start-screen {
-    background-color: #404040;
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 960px) {
-        overflow: hidden;
-    }
-
-    img {
-        height: 100vh;
-    }
-}
-
 .start-label-box {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 50px;
+    background-image: url('../../assets/img/startscreen.png');
+    background-repeat: no-repeat;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 
-    img {
-        width: 40vw;
-        height: auto;
 
-        @media (max-width: 960px) {
-            width: 400px;
+    button {
+        font-size: 36px;
+        background-color: rgb(158, 22, 29);
+        border: none;
+        border-radius: 20px;
+        padding: 35px;
+        color: white;
+        position: absolute;
+        bottom: 50px;
+        left: 7%;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+
+        @media(max-width: 770px) {
+            left: 5%;
+            font-size: 28px;
+            padding: 25px;
         }
+
+        @media(max-width: 470px) {
+            left: 2%;
+            font-size: 22px;
+            padding: 20px;
+        }
+
 
         &:hover {
             filter: brightness(1.5);

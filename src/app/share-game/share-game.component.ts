@@ -19,8 +19,7 @@ export class ShareGameComponent {
   }
 
   copyURL() {
-    let copyText = 'https://ringoffire-bcd6f.firebaseapp.com' + window.location.href;
-    navigator.clipboard.writeText(copyText);
+    navigator.clipboard.writeText(this.actualURL);
   }
 }
 

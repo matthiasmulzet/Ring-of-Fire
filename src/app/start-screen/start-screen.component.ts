@@ -11,7 +11,7 @@ import { Game } from 'src/models/game';
 })
 export class StartScreenComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore, private router: Router) { }
+  constructor(private firestore: AngularFirestore, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +24,5 @@ export class StartScreenComponent implements OnInit {
       .then((gameInfo: any) => {
         this.router.navigateByUrl('/game/' + gameInfo['id']);
       });
-
-    //Start Game
   }
 }

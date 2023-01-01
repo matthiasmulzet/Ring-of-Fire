@@ -1,7 +1,9 @@
+<!-- overview players -->
 <app-player (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;"
     [ngStyle]="{'top.px': 20 + (i * 60)}" [playerActive]="i == game.currentPlayer" [image]="game.player_images[i]"
     [name]="player" class="player-position hide-mobile"></app-player>
 
+<!-- mobile players overview -->
 <div class="scroll-container hide-desktop">
     <app-player-mobile (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;"
         [ngStyle]="{'left.px': 10 + (i * 65), 'top.px': 0}" [playerActive]="i == game.currentPlayer"
@@ -31,7 +33,7 @@
 
 <app-game-info *ngIf="!gameOver" [card]="game.currentCard" class="pin-bottom"></app-game-info>
 
-<button mat-fab color="primary" (click)="openShare()" class="button-share">
+<button *ngIf="!gameOver" mat-fab color="primary" (click)="openShare()" class="button-share">
     <mat-icon>share</mat-icon>
 </button>
 
