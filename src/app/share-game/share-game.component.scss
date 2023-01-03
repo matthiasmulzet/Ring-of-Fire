@@ -24,3 +24,23 @@
 .mat-mdc-dialog-actions {
     justify-content: center;
 }
+
+.d-none {
+    display: none;
+}
+
+.copied-link {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    top: 13%;
+    z-index: 30;
+    background-color: rgba(140, 140, 140, 0.9);
+    color: white;
+    width: max-content;
+    font-size: 18px;
+    height: max-content;
+    padding: 12px;
+    border-radius: 15px;
+}

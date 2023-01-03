@@ -33,18 +33,27 @@ export class GameComponent implements OnInit {
    * loads the game
    */
   ngOnInit(): void {
-    this.openDialog();
     this.route.params.subscribe((params) => {
       this.gameId = params['id'];
-      this
-        .firestore
-        .collection('games')
-        .doc(this.gameId)
-        .valueChanges()
-        .subscribe((game: any) => {
-          this.setJsonElements(game);
-        });
+      this.setFirebaseCollectionAndUpdate();
+      setTimeout(() => {
+        if (this.game.players.length < 2) {
+          this.openDialog();
+        }
+      }, 1500);
     });
+  }
+
+
+  setFirebaseCollectionAndUpdate() {
+    this
+      .firestore
+      .collection('games')
+      .doc(this.gameId)
+      .valueChanges()
+      .subscribe((game: any) => {
+        this.setJsonElements(game);
+      });
   }
 
 
@@ -65,17 +74,10 @@ export class GameComponent implements OnInit {
 
   takeCard() {
     if (this.min2Players()) {
-      if (this.game.stack.length == 0) {
-        this.gameOver = true;
-        setTimeout(() => {
-          this.redirect();
-        }, 2000);
-      }
+      if (this.game.stack.length == 0)
+        this.gameOverAndReload();
       else if (!this.game.pickCardAnimation) {
-        this.game.currentCard = this.game.stack.pop();
-        this.game.pickCardAnimation = true;
-        this.changeCurrentPlayer();
-        this.saveGame();
+        this.changeCurrentCardAndPlayer();
         setTimeout(() => {
           this.game.playedCards.push(this.game.currentCard);
           this.game.pickCardAnimation = false;
@@ -85,8 +87,25 @@ export class GameComponent implements OnInit {
     }
   }
 
+
   min2Players() {
     return this.game.players.length >= 2
+  }
+
+
+  gameOverAndReload() {
+    this.gameOver = true;
+    setTimeout(() => {
+      this.redirect();
+    }, 2000);
+  }
+
+
+  changeCurrentCardAndPlayer() {
+    this.game.currentCard = this.game.stack.pop();
+    this.game.pickCardAnimation = true;
+    this.changeCurrentPlayer();
+    this.saveGame();
   }
 
 

@@ -20,6 +20,11 @@ export class ShareGameComponent {
 
   copyURL() {
     navigator.clipboard.writeText(this.actualURL);
+    let copiedLinkNotification = document.getElementById('copied-link-notification');
+    copiedLinkNotification?.classList.remove('d-none');
+    setTimeout(() => {
+      copiedLinkNotification?.classList.add('d-none');
+    }, 1500);
   }
 }
 

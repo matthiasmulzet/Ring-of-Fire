@@ -28,7 +28,6 @@
         <img (click)="takeCard()" *ngIf="game.pickCardAnimation" class="pick-card"
             src="assets/img/cards/{{ game.currentCard }}.png">
     </div>
-
 </div>
 
 <app-game-info *ngIf="!gameOver" [card]="game.currentCard" class="pin-bottom"></app-game-info>
